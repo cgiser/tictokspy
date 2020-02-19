@@ -1,14 +1,5 @@
 package main
 
-import (
-	"fmt"
-	"github.com/cgiser/tictokspy/common"
-	"github.com/cgiser/tictokspy/model"
-	"github.com/globalsign/mgo/bson"
-	"os"
-	"os/exec"
-)
-
 func main()  {
 	//deviced_id := rand.Int63n(999999999999999999)+6000000000000000000
 	//_rticket := time.Now().Unix()*1000
@@ -33,25 +24,25 @@ func main()  {
 	//	s, _ := ioutil.ReadAll(res.Body) //把  body 内容读入字符串 s
 	//	fmt.Println(string(s))        //在返回页面中显示内容。
 	//}
-	session := common.GetMongoSession()
-	defer session.Close()
-	bundle := session.DB(common.MogDB).C("crawler-tiktok-user")
-	query := bson.M{}
-
-	iter := bundle.Find(query).Iter()
-
-	user := model.TicUser{}
-	for iter.Next(&user) {
-
-		update := exec.Command("python2", "./tiktok_videos.py", fmt.Sprintf("%d",*user.UserId),"20")
-		update.Dir = "/dianyi/app/tiktok_videos"
-		update.Stdout = os.Stdout
-		update.Stderr = os.Stderr
-		err := update.Run()
-		if err != nil {
-			fmt.Println("update source, error: %v", err)
-		}
-	}
+	//session := common.GetMongoSession()
+	//defer session.Close()
+	//bundle := session.DB(common.MogDB).C("crawler-tiktok-user")
+	//query := bson.M{}
+	//
+	//iter := bundle.Find(query).Iter()
+	//
+	//user := model.TicUser{}
+	//for iter.Next(&user) {
+	//
+	//	update := exec.Command("python2", "./tiktok_videos.py", fmt.Sprintf("%d",*user.UserId),"20")
+	//	update.Dir = "/dianyi/app/tiktok_videos"
+	//	update.Stdout = os.Stdout
+	//	update.Stderr = os.Stderr
+	//	err := update.Run()
+	//	if err != nil {
+	//		fmt.Println("update source, error: %v", err)
+	//	}
+	//}
 
 
 }

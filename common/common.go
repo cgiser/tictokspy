@@ -1,11 +1,9 @@
 package common
 
 import (
-	"context"
 	"encoding/json"
 	"fmt"
-	"go.mongodb.org/mongo-driver/mongo"
-	"log"
+	"gopkg.in/mgo.v2"
 	"net/http"
 	"net/url"
 )
@@ -109,26 +107,26 @@ func init() {
 
 }
 
-/**
- * 公共方法，获取session，如果存在则拷贝一份
- */
-func GetMongoSession() {
-	// Set client options
-	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
-
-	// Connect to MongoDB
-	client, err := mongo.Connect(context.TODO(), clientOptions)
-
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	// Check the connection
-	err = client.Ping(context.TODO(), nil)
-
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	fmt.Println("Connected to MongoDB!")
-}
+///**
+// * 公共方法，获取session，如果存在则拷贝一份
+// */
+//func GetMongoSession() {
+//	// Set client options
+//	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
+//
+//	// Connect to MongoDB
+//	client, err := mongo.Connect(context.TODO(), clientOptions)
+//
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//
+//	// Check the connection
+//	err = client.Ping(context.TODO(), nil)
+//
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//
+//	fmt.Println("Connected to MongoDB!")
+//}
